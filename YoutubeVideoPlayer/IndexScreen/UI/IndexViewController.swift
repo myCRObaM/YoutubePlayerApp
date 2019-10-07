@@ -9,11 +9,20 @@
 import UIKit
 import RxSwift
 
-class IndexViewController: UIViewController {
+class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.videoData?.resultsPerPage ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
     
     
-    let customView: UIView = {
-        let view = UIView()
+    
+    let customView: UITableView = {
+        let view = UITableView()
         view.backgroundColor = .gray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -44,6 +53,8 @@ class IndexViewController: UIViewController {
     //MARK: UI setup
     func setupUI(){
         view.addSubview(customView)
+        customView.delegate = self
+        customView.dataSource = self
         
         NSLayoutConstraint.activate([
             customView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -63,6 +74,7 @@ class IndexViewController: UIViewController {
         }
         
         spinnerControl(subject: output.spinnerSubject).disposed(by: disposeBag)
+        input.getDataSubject.onNext(true)
         
     }
     func spinnerControl(subject: PublishSubject<Bool>) -> Disposable{

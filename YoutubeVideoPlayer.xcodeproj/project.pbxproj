@@ -25,6 +25,7 @@
 		F01CAF5B234B4503009C0898 /* IndexViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF5A234B4503009C0898 /* IndexViewModelTest.swift */; };
 		F01CAF5E234B4572009C0898 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF5D234B4572009C0898 /* GeneratedMocks.swift */; };
 		F01CAF60234B466F009C0898 /* IndexTest.json in Resources */ = {isa = PBXBuildFile; fileRef = F01CAF5F234B466F009C0898 /* IndexTest.json */; };
+		F01CAF63234B5233009C0898 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF62234B5233009C0898 /* VideoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		F01CAF5A234B4503009C0898 /* IndexViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModelTest.swift; sourceTree = "<group>"; };
 		F01CAF5D234B4572009C0898 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		F01CAF5F234B466F009C0898 /* IndexTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IndexTest.json; sourceTree = "<group>"; };
+		F01CAF62234B5233009C0898 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		F01CAF42234B1FC2009C0898 /* IndexScreen */ = {
 			isa = PBXGroup;
 			children = (
+				F01CAF61234B5219009C0898 /* Custom Table View Cell */,
 				F01CAF43234B1FCB009C0898 /* UI */,
 				F01CAF45234B1FD2009C0898 /* Coordinator */,
 				F01CAF44234B1FCE009C0898 /* Model */,
@@ -236,6 +239,14 @@
 				F01CAF58234B3E8F009C0898 /* DataClass.swift */,
 			);
 			path = DataClass;
+			sourceTree = "<group>";
+		};
+		F01CAF61234B5219009C0898 /* Custom Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF62234B5233009C0898 /* VideoTableViewCell.swift */,
+			);
+			path = "Custom Table View Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,6 +457,7 @@
 				F01CAF49234B209C009C0898 /* IndexViewCoordinator.swift in Sources */,
 				F01CAF41234B1F76009C0898 /* Coordinator.swift in Sources */,
 				F01CAF59234B3E8F009C0898 /* DataClass.swift in Sources */,
+				F01CAF63234B5233009C0898 /* VideoTableViewCell.swift in Sources */,
 				F01CAF4C234B20EF009C0898 /* AppCoordiantor.swift in Sources */,
 				F01CAF23234B1F63009C0898 /* IndexViewController.swift in Sources */,
 				F01CAF56234B3A69009C0898 /* IndexDataModel.swift in Sources */,
