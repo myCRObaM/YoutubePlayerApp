@@ -9,7 +9,8 @@
 import Foundation
 import RxSwift
 import UIKit
-import YoutubeVideoPlayer
+import Shared
+
 
 class SingleVideoViewController: UIViewController {
     //MARK: INIT
@@ -24,4 +25,10 @@ class SingleVideoViewController: UIViewController {
     
     //MARK: Variables
     var viewModel: SingleVideoModel!
+    weak var coordinatorDelegate: CoordinatorDelegate?
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        coordinatorDelegate?.viewControllerHasFinished()
+        super.viewDidDisappear(animated)
+    }
 }

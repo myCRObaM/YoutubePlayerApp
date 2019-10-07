@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6477837AC28A91BBC1147CE6 /* Pods_YoutubeSingleVideo_YoutubeSingleVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40BDAFD8215A6BD92364AF6 /* Pods_YoutubeSingleVideo_YoutubeSingleVideoTests.framework */; };
-		9A9B1CFA79531E43C4BC2912 /* Pods_YoutubeSingleVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E0C9074024E58A67CE063E /* Pods_YoutubeSingleVideo.framework */; };
+		F0013321234B6D51000C431F /* Pods_YoutubeSingleVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0013320234B6D51000C431F /* Pods_YoutubeSingleVideo.framework */; };
+		F0013324234B6D75000C431F /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0013322234B6D5D000C431F /* Shared.framework */; };
+		F0013325234B6D75000C431F /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0013322234B6D5D000C431F /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F01CAFA1234B5B83009C0898 /* YoutubeSingleVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01CAF97234B5B83009C0898 /* YoutubeSingleVideo.framework */; };
 		F01CAFA6234B5B83009C0898 /* YoutubeSingleVideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAFA5234B5B83009C0898 /* YoutubeSingleVideoTests.swift */; };
 		F01CAFA8234B5B83009C0898 /* YoutubeSingleVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = F01CAF9A234B5B83009C0898 /* YoutubeSingleVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +29,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F0013326234B6D75000C431F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0013325234B6D75000C431F /* Shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		101BF14402D72D8A9830A2A8 /* Pods-YoutubeSingleVideo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoutubeSingleVideo.debug.xcconfig"; path = "Target Support Files/Pods-YoutubeSingleVideo/Pods-YoutubeSingleVideo.debug.xcconfig"; sourceTree = "<group>"; };
 		595D87DF12C40EABA59A4B9B /* Pods-YoutubeSingleVideo-YoutubeSingleVideoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoutubeSingleVideo-YoutubeSingleVideoTests.release.xcconfig"; path = "Target Support Files/Pods-YoutubeSingleVideo-YoutubeSingleVideoTests/Pods-YoutubeSingleVideo-YoutubeSingleVideoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -34,6 +50,13 @@
 		966253DD79D0919D173A86B0 /* Pods-YoutubeSingleVideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoutubeSingleVideo.release.xcconfig"; path = "Target Support Files/Pods-YoutubeSingleVideo/Pods-YoutubeSingleVideo.release.xcconfig"; sourceTree = "<group>"; };
 		C40BDAFD8215A6BD92364AF6 /* Pods_YoutubeSingleVideo_YoutubeSingleVideoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoutubeSingleVideo_YoutubeSingleVideoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E0C9074024E58A67CE063E /* Pods_YoutubeSingleVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoutubeSingleVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F001330D234B69E4000C431F /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0013314234B6B4A000C431F /* Pods_YoutubeVideoPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_YoutubeVideoPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0013317234B6B9C000C431F /* Pods_YoutubeSingleVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_YoutubeSingleVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F001331A234B6BAF000C431F /* Pods_YoutubeVideoPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_YoutubeVideoPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F001331D234B6BBC000C431F /* Pods_YoutubeSingleVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_YoutubeSingleVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0013320234B6D51000C431F /* Pods_YoutubeSingleVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_YoutubeSingleVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0013322234B6D5D000C431F /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01CAF97234B5B83009C0898 /* YoutubeSingleVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YoutubeSingleVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01CAF9A234B5B83009C0898 /* YoutubeSingleVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeSingleVideo.h; sourceTree = "<group>"; };
 		F01CAF9B234B5B83009C0898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,7 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9B1CFA79531E43C4BC2912 /* Pods_YoutubeSingleVideo.framework in Frameworks */,
+				F0013321234B6D51000C431F /* Pods_YoutubeSingleVideo.framework in Frameworks */,
+				F0013324234B6D75000C431F /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +93,13 @@
 		94386A37B097E9126CEAB374 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0013322234B6D5D000C431F /* Shared.framework */,
+				F0013320234B6D51000C431F /* Pods_YoutubeSingleVideo.framework */,
+				F001331D234B6BBC000C431F /* Pods_YoutubeSingleVideo.framework */,
+				F001331A234B6BAF000C431F /* Pods_YoutubeVideoPlayer.framework */,
+				F0013317234B6B9C000C431F /* Pods_YoutubeSingleVideo.framework */,
+				F0013314234B6B4A000C431F /* Pods_YoutubeVideoPlayer.framework */,
+				F001330D234B69E4000C431F /* Shared.framework */,
 				C4E0C9074024E58A67CE063E /* Pods_YoutubeSingleVideo.framework */,
 				C40BDAFD8215A6BD92364AF6 /* Pods_YoutubeSingleVideo_YoutubeSingleVideoTests.framework */,
 			);
@@ -183,6 +214,7 @@
 				F01CAF93234B5B83009C0898 /* Sources */,
 				F01CAF94234B5B83009C0898 /* Frameworks */,
 				F01CAF95234B5B83009C0898 /* Resources */,
+				F0013326234B6D75000C431F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -23,6 +23,10 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.input.openSingleSubject.onNext(indexPath.row)
+    }
+    
     
     
     let customView: UITableView = {
@@ -71,7 +75,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     //MARK: Setup View Model
     func setupViewModel(){
-        let input = IndexViewModel.Input(getDataSubject: ReplaySubject.create(bufferSize: 1))
+        let input = IndexViewModel.Input(getDataSubject: ReplaySubject.create(bufferSize: 1), openSingleSubject: PublishSubject())
         
         let output = viewModel.transform(input: input)
         

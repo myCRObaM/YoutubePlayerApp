@@ -18,7 +18,9 @@ class IndexViewCoordinator: Coordinator {
     
     init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.indexViewController = IndexViewController(viewModel: IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository())))
+        let viewModel = IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository()))
+        viewModel.openSingleDelegate = self
+        self.indexViewController = IndexViewController(viewModel: viewModel)
     }
     
     func start() {
@@ -26,4 +28,23 @@ class IndexViewCoordinator: Coordinator {
     }
     
     
+}
+
+extension IndexViewCoordinator: CoordinatorDelegate, ParentCoordinatorDelegate {
+    func viewControllerHasFinished() {
+        childCoordinators.removeAll()
+        childHasFinished(coordinator: self)
+    }
+    
+    func childHasFinished(coordinator: Coordinator) {
+        self.removeCoordinator(coordinator: coordinator)
+    }
+    
+    
+}
+
+extension IndexViewCoordinator: OpenSingleDelegate {
+    func openVC(videoID: String) {
+        let singleCoordinator = SingleVideo
+    }
 }

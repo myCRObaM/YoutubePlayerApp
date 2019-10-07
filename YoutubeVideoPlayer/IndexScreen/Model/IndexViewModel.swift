@@ -14,6 +14,7 @@ class IndexViewModel {
     //MARK: Defining structs
     struct Input {
         var getDataSubject: ReplaySubject<Bool>
+        var openSingleSubject: PublishSubject<Int>
     }
     struct Output {
         var disposables: [Disposable]
@@ -29,12 +30,13 @@ class IndexViewModel {
     var input: Input!
     var output: Output!
     var videoData: DataClass?
+    weak var openSingleDelegate: OpenSingleDelegate?
     
     //MARK: Init
     init(dependencies: IndexViewModel.Dependencies) {
         self.dependencies = dependencies
     }
-    
+    //MARK: Transform
     func transform(input: IndexViewModel.Input) -> IndexViewModel.Output {
         self.input = input
         var disposables = [Disposable]()
@@ -44,7 +46,7 @@ class IndexViewModel {
         self.output = IndexViewModel.Output(disposables: disposables, dataReadySubject: PublishSubject(), spinnerSubject: PublishSubject())
         return output
     }
-    
+    //MARK: GetData
     func getData(subject: ReplaySubject<Bool>) -> Disposable {
         return subject
             .flatMap({ [unowned self] (bool) -> Observable<IndexDataModel> in
@@ -66,6 +68,15 @@ class IndexViewModel {
         .subscribe(onNext: {[unowned self]  bool in
             self.output.dataReadySubject.onNext(true)
             self.output.spinnerSubject.onNext(false)
+            })
+    }
+    //MARK: Open single
+    func openSingle(subject: PublishSubject<Int>) -> Disposable {
+        return subject
+            .observeOn(MainScheduler.instance)
+            .subscribeOn(dependencies.scheduler)
+            .subscribe(onNext: {[unowned self]  bool in
+                self.openSingleDelegate?.openVC(videoID: (self.videoData?.videoInfo[bool].id)!)
             })
     }
 }
