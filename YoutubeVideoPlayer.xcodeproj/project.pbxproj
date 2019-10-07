@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		F01CAF47234B1FF9009C0898 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF46234B1FF9009C0898 /* IndexViewModel.swift */; };
 		F01CAF49234B209C009C0898 /* IndexViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF48234B209C009C0898 /* IndexViewCoordinator.swift */; };
 		F01CAF4C234B20EF009C0898 /* AppCoordiantor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF4B234B20EF009C0898 /* AppCoordiantor.swift */; };
+		F01CAF51234B3989009C0898 /* AlamofireRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF50234B3989009C0898 /* AlamofireRepository.swift */; };
+		F01CAF53234B39A3009C0898 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF52234B39A3009C0898 /* AlamofireManager.swift */; };
+		F01CAF56234B3A69009C0898 /* IndexDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF55234B3A69009C0898 /* IndexDataModel.swift */; };
+		F01CAF59234B3E8F009C0898 /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF58234B3E8F009C0898 /* DataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		F01CAF46234B1FF9009C0898 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		F01CAF48234B209C009C0898 /* IndexViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewCoordinator.swift; sourceTree = "<group>"; };
 		F01CAF4B234B20EF009C0898 /* AppCoordiantor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordiantor.swift; sourceTree = "<group>"; };
+		F01CAF50234B3989009C0898 /* AlamofireRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRepository.swift; sourceTree = "<group>"; };
+		F01CAF52234B39A3009C0898 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
+		F01CAF55234B3A69009C0898 /* IndexDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDataModel.swift; sourceTree = "<group>"; };
+		F01CAF58234B3E8F009C0898 /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +97,6 @@
 				D5B7F9E11CA4693691EEFFCE /* Pods-YoutubeVideoPlayerTests.debug.xcconfig */,
 				B0B89B3BF0517E6EB6EC14A1 /* Pods-YoutubeVideoPlayerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -119,6 +126,9 @@
 				F01CAF1E234B1F63009C0898 /* AppDelegate.swift */,
 				F01CAF27234B1F65009C0898 /* Assets.xcassets */,
 				F01CAF40234B1F76009C0898 /* Coordinator.swift */,
+				F01CAF57234B3E82009C0898 /* DataClass */,
+				F01CAF54234B3A59009C0898 /* Data Model */,
+				F01CAF4D234B3928009C0898 /* Networking */,
 				F01CAF4A234B20E0009C0898 /* AppCoordinator */,
 				F01CAF42234B1FC2009C0898 /* IndexScreen */,
 				F01CAF29234B1F65009C0898 /* LaunchScreen.storyboard */,
@@ -178,6 +188,47 @@
 			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
+		F01CAF4D234B3928009C0898 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF4F234B3960009C0898 /* Manager */,
+				F01CAF4E234B3934009C0898 /* Repository */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F01CAF4E234B3934009C0898 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF50234B3989009C0898 /* AlamofireRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		F01CAF4F234B3960009C0898 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF52234B39A3009C0898 /* AlamofireManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		F01CAF54234B3A59009C0898 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF55234B3A69009C0898 /* IndexDataModel.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		F01CAF57234B3E82009C0898 /* DataClass */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAF58234B3E8F009C0898 /* DataClass.swift */,
+			);
+			path = DataClass;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +259,7 @@
 				F01CAF2D234B1F65009C0898 /* Sources */,
 				F01CAF2E234B1F65009C0898 /* Frameworks */,
 				F01CAF2F234B1F65009C0898 /* Resources */,
+				711D97C23D3E764EF00E86EF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,6 +329,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		711D97C23D3E764EF00E86EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YoutubeVideoPlayerTests/Pods-YoutubeVideoPlayerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YoutubeVideoPlayerTests/Pods-YoutubeVideoPlayerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YoutubeVideoPlayerTests/Pods-YoutubeVideoPlayerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B0620A1920BD42C1E0157B21 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,9 +416,13 @@
 			files = (
 				F01CAF49234B209C009C0898 /* IndexViewCoordinator.swift in Sources */,
 				F01CAF41234B1F76009C0898 /* Coordinator.swift in Sources */,
+				F01CAF59234B3E8F009C0898 /* DataClass.swift in Sources */,
 				F01CAF4C234B20EF009C0898 /* AppCoordiantor.swift in Sources */,
 				F01CAF23234B1F63009C0898 /* IndexViewController.swift in Sources */,
+				F01CAF56234B3A69009C0898 /* IndexDataModel.swift in Sources */,
+				F01CAF53234B39A3009C0898 /* AlamofireManager.swift in Sources */,
 				F01CAF1F234B1F63009C0898 /* AppDelegate.swift in Sources */,
+				F01CAF51234B3989009C0898 /* AlamofireRepository.swift in Sources */,
 				F01CAF47234B1FF9009C0898 /* IndexViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

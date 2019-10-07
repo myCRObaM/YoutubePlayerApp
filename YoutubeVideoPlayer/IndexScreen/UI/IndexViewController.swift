@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class IndexViewController: UIViewController {
-
+    
+    
     let customView: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -19,6 +21,7 @@ class IndexViewController: UIViewController {
     
     //MARK: Variables
     let viewModel: IndexViewModel
+    let disposeBag = DisposeBag()
     
     //MARK: Init
     init(viewModel: IndexViewModel) {
@@ -33,6 +36,7 @@ class IndexViewController: UIViewController {
     //MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewModel()
         setupUI()
     }
     
@@ -46,6 +50,19 @@ class IndexViewController: UIViewController {
             customView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    func setupViewModel(){
+        let input = IndexViewModel.Input(getDataSubject: PublishSubject())
+        
+        let output = viewModel.transform(input: input)
+        
+        for disposable in output.disposables {
+            disposable.disposed(by: disposeBag)
+        }
+        
+        
+    }
+    
 
 
 }

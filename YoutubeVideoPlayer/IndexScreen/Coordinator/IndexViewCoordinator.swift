@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class IndexViewCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
@@ -16,7 +17,7 @@ class IndexViewCoordinator: Coordinator {
     
     init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.indexViewController = IndexViewController(viewModel: IndexViewModel(dependencies: IndexViewModel.Dependencies()))
+        self.indexViewController = IndexViewController(viewModel: IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository())))
     }
     
     func start() {

@@ -8,11 +8,19 @@ target 'YoutubeVideoPlayer' do
   # Pods for YoutubeVideoPlayer
 
 pod "youtube-ios-player-helper"
-pod 'GoogleAPIClientForREST/YouTube'
+pod 'Alamofire'
+pod 'RealmSwift'
+pod 'RxSwift'
+pod 'RxCocoa'
+
 
   target 'YoutubeVideoPlayerTests' do
     inherit! :search_paths
     # Pods for testing
+pod 'Quick'
+  pod 'Nimble'
+  pod 'Cuckoo'
+  pod 'RxTest'
   end
 
 end
