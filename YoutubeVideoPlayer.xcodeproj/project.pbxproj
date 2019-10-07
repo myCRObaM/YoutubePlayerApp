@@ -22,6 +22,9 @@
 		F01CAF53234B39A3009C0898 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF52234B39A3009C0898 /* AlamofireManager.swift */; };
 		F01CAF56234B3A69009C0898 /* IndexDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF55234B3A69009C0898 /* IndexDataModel.swift */; };
 		F01CAF59234B3E8F009C0898 /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF58234B3E8F009C0898 /* DataClass.swift */; };
+		F01CAF5B234B4503009C0898 /* IndexViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF5A234B4503009C0898 /* IndexViewModelTest.swift */; };
+		F01CAF5E234B4572009C0898 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF5D234B4572009C0898 /* GeneratedMocks.swift */; };
+		F01CAF60234B466F009C0898 /* IndexTest.json in Resources */ = {isa = PBXBuildFile; fileRef = F01CAF5F234B466F009C0898 /* IndexTest.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		F01CAF52234B39A3009C0898 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		F01CAF55234B3A69009C0898 /* IndexDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDataModel.swift; sourceTree = "<group>"; };
 		F01CAF58234B3E8F009C0898 /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
+		F01CAF5A234B4503009C0898 /* IndexViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModelTest.swift; sourceTree = "<group>"; };
+		F01CAF5D234B4572009C0898 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		F01CAF5F234B466F009C0898 /* IndexTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IndexTest.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				F01CAF35234B1F65009C0898 /* YoutubeVideoPlayerTests.swift */,
+				F01CAF5D234B4572009C0898 /* GeneratedMocks.swift */,
+				F01CAF5F234B466F009C0898 /* IndexTest.json */,
+				F01CAF5A234B4503009C0898 /* IndexViewModelTest.swift */,
 				F01CAF37234B1F65009C0898 /* Info.plist */,
 			);
 			path = YoutubeVideoPlayerTests;
@@ -237,6 +246,7 @@
 			buildConfigurationList = F01CAF3A234B1F65009C0898 /* Build configuration list for PBXNativeTarget "YoutubeVideoPlayer" */;
 			buildPhases = (
 				FDFE7502D39C55384629DC64 /* [CP] Check Pods Manifest.lock */,
+				F01CAF5C234B4527009C0898 /* ShellScript */,
 				F01CAF17234B1F63009C0898 /* Sources */,
 				F01CAF18234B1F63009C0898 /* Frameworks */,
 				F01CAF19234B1F63009C0898 /* Resources */,
@@ -323,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01CAF60234B466F009C0898 /* IndexTest.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +396,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F01CAF5C234B4527009C0898 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}/Networking/Repository/AlamofireRepository.swift",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+		};
 		FDFE7502D39C55384629DC64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,6 +461,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01CAF36234B1F65009C0898 /* YoutubeVideoPlayerTests.swift in Sources */,
+				F01CAF5E234B4572009C0898 /* GeneratedMocks.swift in Sources */,
+				F01CAF5B234B4503009C0898 /* IndexViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

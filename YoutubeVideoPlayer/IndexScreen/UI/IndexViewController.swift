@@ -19,6 +19,8 @@ class IndexViewController: UIViewController {
         return view
     }()
     
+    var vSpinner : UIView?
+    
     //MARK: Variables
     let viewModel: IndexViewModel
     let disposeBag = DisposeBag()
@@ -39,7 +41,7 @@ class IndexViewController: UIViewController {
         setupViewModel()
         setupUI()
     }
-    
+    //MARK: UI setup
     func setupUI(){
         view.addSubview(customView)
         
@@ -50,7 +52,7 @@ class IndexViewController: UIViewController {
             customView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
+    //MARK: Setup View Model
     func setupViewModel(){
         let input = IndexViewModel.Input(getDataSubject: PublishSubject())
         
@@ -60,9 +62,44 @@ class IndexViewController: UIViewController {
             disposable.disposed(by: disposeBag)
         }
         
+        spinnerControl(subject: output.spinnerSubject).disposed(by: disposeBag)
         
     }
+    func spinnerControl(subject: PublishSubject<Bool>) -> Disposable{
+        return subject
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(viewModel.dependencies.scheduler)
+        .subscribe(onNext: {[unowned self]  bool in
+            switch bool{
+            case true:
+                self.showSpinner(onView: self.view)
+            case false:
+                self.removeSpinner()
+            }
+            })
+    }
     
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+        }
+    }
 
 
 }

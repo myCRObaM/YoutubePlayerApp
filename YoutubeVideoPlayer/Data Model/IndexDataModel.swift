@@ -22,7 +22,7 @@ struct ItemsModel: Decodable {
 
 struct SnippetModel: Decodable {
     let publishedAt: String
-    let channelID: String
+    let channelId: String
     let title: String
     let description : String
     let thumbnails: ThumbnailsModel
