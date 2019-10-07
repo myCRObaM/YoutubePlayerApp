@@ -13,7 +13,7 @@ import RxSwift
 class IndexViewModel {
     //MARK: Defining structs
     struct Input {
-        var getDataSubject: PublishSubject<Bool>
+        var getDataSubject: ReplaySubject<Bool>
     }
     struct Output {
         var disposables: [Disposable]
@@ -45,7 +45,7 @@ class IndexViewModel {
         return output
     }
     
-    func getData(subject: PublishSubject<Bool>) -> Disposable {
+    func getData(subject: ReplaySubject<Bool>) -> Disposable {
         return subject
             .flatMap({ [unowned self] (bool) -> Observable<IndexDataModel> in
                 self.output.spinnerSubject.onNext(true)

@@ -16,7 +16,11 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as? IndexTableViewCell else {fatalError("cell not found")}
+        guard let data = viewModel.videoData?.videoInfo[indexPath.row] else {fatalError("Data not found")}
+        
+        cell.setupCell(channel: data.channelTitle, title: data.title, imageURL: data.thumbnail)
+        return cell
     }
     
     
@@ -33,6 +37,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: Variables
     let viewModel: IndexViewModel
     let disposeBag = DisposeBag()
+    let reuseID = "CCell"
     
     //MARK: Init
     init(viewModel: IndexViewModel) {
@@ -55,6 +60,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.addSubview(customView)
         customView.delegate = self
         customView.dataSource = self
+        customView.register(IndexTableViewCell.self, forCellReuseIdentifier: reuseID)
         
         NSLayoutConstraint.activate([
             customView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -65,7 +71,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     //MARK: Setup View Model
     func setupViewModel(){
-        let input = IndexViewModel.Input(getDataSubject: PublishSubject())
+        let input = IndexViewModel.Input(getDataSubject: ReplaySubject.create(bufferSize: 1))
         
         let output = viewModel.transform(input: input)
         
@@ -87,6 +93,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.showSpinner(onView: self.view)
             case false:
                 self.removeSpinner()
+                self.customView.reloadData()
             }
             })
     }

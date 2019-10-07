@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:YoutubeSingleVideo/YoutubeSingleVideo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Shared/Shared.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:YoutubeVideoPlayer.xcodeproj">
    </FileRef>
    <FileRef

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Shared
+
 
 class AppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []

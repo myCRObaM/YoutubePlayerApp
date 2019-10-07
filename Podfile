@@ -1,26 +1,38 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
+use_frameworks!
 
-target 'YoutubeVideoPlayer' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+workspace 'YoutubeVideoPlayer'
 
-  # Pods for YoutubeVideoPlayer
+def pods
+  pod "youtube-ios-player-helper"
+  pod 'Alamofire'
+  pod 'RealmSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Kingfisher'
+end
 
-pod "youtube-ios-player-helper"
-pod 'Alamofire'
-pod 'RealmSwift'
-pod 'RxSwift'
-pod 'RxCocoa'
-
-
-  target 'YoutubeVideoPlayerTests' do
-    inherit! :search_paths
-    # Pods for testing
-pod 'Quick'
+def testing_pods
+  pod 'Quick'
   pod 'Nimble'
   pod 'Cuckoo'
   pod 'RxTest'
-  end
-
 end
+
+target 'YoutubeVideoPlayer' do
+  pods
+  target 'YoutubeVideoPlayerTests' do
+    testing_pods
+  end
+end
+
+target 'YoutubeSingleVideo' do
+  project 'YoutubeSingleVideo/YoutubeSingleVideo.project'
+  pods
+  target 'YoutubeSingleVideoTests' do
+    testing_pods
+  end
+end
+
+
