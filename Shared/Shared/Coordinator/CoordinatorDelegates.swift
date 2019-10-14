@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ParentCoordinatorDelegate {
+public protocol ParentCoordinatorDelegate: class {
     func childHasFinished(coordinator: Coordinator)
 }
 

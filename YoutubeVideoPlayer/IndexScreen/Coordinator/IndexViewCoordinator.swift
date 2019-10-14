@@ -9,42 +9,46 @@
 import Foundation
 import UIKit
 import RxSwift
+import YoutubeSingleVideo
 import Shared
 
 class IndexViewCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     let presenter: UINavigationController
+    var viewModel: IndexViewModel!
     let indexViewController: IndexViewController
     
     init(presenter: UINavigationController) {
         self.presenter = presenter
-        let viewModel = IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository()))
-        viewModel.openSingleDelegate = self
+        self.viewModel = IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository()))
+        
         self.indexViewController = IndexViewController(viewModel: viewModel)
+        
     }
     
     func start() {
         presenter.viewControllers = [indexViewController]
+        viewModel.openSingleDelegate = self
+    }
+    
+    deinit {
+        print("Index View Coordinator deinit")
     }
     
     
 }
 
-extension IndexViewCoordinator: CoordinatorDelegate, ParentCoordinatorDelegate {
-    func viewControllerHasFinished() {
-        childCoordinators.removeAll()
-        childHasFinished(coordinator: self)
-    }
-    
+extension IndexViewCoordinator: ParentCoordinatorDelegate {
     func childHasFinished(coordinator: Coordinator) {
         self.removeCoordinator(coordinator: coordinator)
     }
-    
-    
 }
 
 extension IndexViewCoordinator: OpenSingleDelegate {
     func openVC(videoID: String) {
-        let singleCoordinator = SingleVideo
+        let youtubeVideo = SingleVideoCoordinator(presenter: presenter, videoID: videoID)
+        self.addCoordinator(coordinator: youtubeVideo)
+        youtubeVideo.coordinatorDelegate = self
+        youtubeVideo.start()
     }
 }

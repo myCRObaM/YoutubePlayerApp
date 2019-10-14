@@ -14,17 +14,28 @@ public class SingleVideoCoordinator: Coordinator {
     public var childCoordinators: [Coordinator] = []
     let presenter: UINavigationController
     let viewController: SingleVideoViewController!
-    public weak var coordinatorDelegate: CoordinatorDelegate?
+    public weak var coordinatorDelegate: ParentCoordinatorDelegate?
+    let videoID: String
     
-   public init(presenter: UINavigationController) {
+    public init(presenter: UINavigationController, videoID: String) {
         self.presenter = presenter
-        let model = SingleVideoModel(dependencies: SingleVideoModel.Dependencies())
+        self.videoID = videoID
+        let model = SingleVideoModel(dependencies: SingleVideoModel.Dependencies(videoID: videoID))
         self.viewController = SingleVideoViewController(viewModel: model)
-        viewController.coordinatorDelegate = coordinatorDelegate
+        viewController.coordinatorDelegate = self
         presenter.setNavigationBarHidden(false, animated: false)
     }
     
     public func start() {
         presenter.pushViewController(viewController, animated: false)
+    }
+}
+
+extension SingleVideoCoordinator: CoordinatorDelegate {
+    public func viewControllerHasFinished() {
+        presenter.setNavigationBarHidden(true, animated: false)
+        self.childCoordinators.removeAll()
+        print("SingleVideoCoordinator deinit")
+        coordinatorDelegate?.childHasFinished(coordinator: self)
     }
 }

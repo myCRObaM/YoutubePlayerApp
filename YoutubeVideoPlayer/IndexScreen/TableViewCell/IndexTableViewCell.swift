@@ -31,6 +31,7 @@ class IndexTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 1
         view.text = "TestChannelNamea"
+        view.font = .systemFont(ofSize: 12)
         return view
     }()
     
@@ -57,7 +58,7 @@ class IndexTableViewCell: UITableViewCell {
             videoImageView.heightAnchor.constraint(equalToConstant: 200),
             
             titleLabel.topAnchor.constraint(equalTo: videoImageView.bottomAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: videoImageView.leadingAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: videoImageView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: videoImageView.trailingAnchor, constant: -20),
             
             channelName.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),

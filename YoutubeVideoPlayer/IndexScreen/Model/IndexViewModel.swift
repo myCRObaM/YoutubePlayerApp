@@ -42,6 +42,7 @@ class IndexViewModel {
         var disposables = [Disposable]()
         
         disposables.append(getData(subject: input.getDataSubject))
+        disposables.append(openSingle(subject: input.openSingleSubject))
         
         self.output = IndexViewModel.Output(disposables: disposables, dataReadySubject: PublishSubject(), spinnerSubject: PublishSubject())
         return output

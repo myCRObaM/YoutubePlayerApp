@@ -19,7 +19,7 @@ class SingleVideoModel {
         var disposables: [Disposable]
     }
     struct Dependencies {
-        
+        var videoID: String
     }
     
     //MARK: Variables
@@ -35,7 +35,7 @@ class SingleVideoModel {
     //MARK: Transform
     func transform(input: SingleVideoModel.Input) -> SingleVideoModel.Output {
         self.input = input
-        var disposables = [Disposable]()
+        let disposables = [Disposable]()
         
         self.output = Output(disposables: disposables)
         return output

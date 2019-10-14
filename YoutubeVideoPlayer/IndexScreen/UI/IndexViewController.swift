@@ -31,7 +31,7 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let customView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

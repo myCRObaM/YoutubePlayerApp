@@ -31,5 +31,9 @@ class AppCoordinator: Coordinator {
         self.addCoordinator(coordinator: indexCoordinator)
     }
     
+    deinit {
+        print("Deinit AppCoordinator")
+    }
+    
     
 }
