@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class AlamofireRepository {
+class YoutubeRepository {
     
     
     let baseURL = "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&locale=hr&maxResults=20&key="

@@ -23,10 +23,11 @@ public class SingleVideoCoordinator: Coordinator {
         let model = SingleVideoModel(dependencies: SingleVideoModel.Dependencies(videoID: videoID))
         self.viewController = SingleVideoViewController(viewModel: model)
         viewController.coordinatorDelegate = self
-        presenter.setNavigationBarHidden(false, animated: false)
+        
     }
     
     public func start() {
+        presenter.setNavigationBarHidden(false, animated: false)
         presenter.pushViewController(viewController, animated: false)
     }
 }

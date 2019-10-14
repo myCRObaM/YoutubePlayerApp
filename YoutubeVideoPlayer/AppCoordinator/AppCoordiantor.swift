@@ -27,8 +27,8 @@ class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
         
         let indexCoordinator = IndexViewCoordinator(presenter: navigationController)
-        indexCoordinator.start()
         self.addCoordinator(coordinator: indexCoordinator)
+        indexCoordinator.start()
     }
     
     deinit {

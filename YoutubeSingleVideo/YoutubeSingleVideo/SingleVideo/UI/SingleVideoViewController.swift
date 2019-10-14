@@ -11,6 +11,7 @@ import RxSwift
 import UIKit
 import Shared
 import youtube_ios_player_helper
+import SnapKit
 
 
 class SingleVideoViewController: UIViewController, YTPlayerViewDelegate {
@@ -24,7 +25,6 @@ class SingleVideoViewController: UIViewController, YTPlayerViewDelegate {
     
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         playerView.playVideo()
-        print(playerView.playlist())
     }
     
     //MARK: INIT
@@ -39,16 +39,36 @@ class SingleVideoViewController: UIViewController, YTPlayerViewDelegate {
     
     //MARK: Variables
     var viewModel: SingleVideoModel!
+    let disposeBag = DisposeBag()
     weak var coordinatorDelegate: CoordinatorDelegate?
     
     override func viewDidLoad() {
-        setupVideoPlayer()
+        setupViewModel()
+        viewModel.input.setupData.onNext(true)
         super.viewDidLoad()
+    }
+    
+    func setupViewModel() {
+        let input = SingleVideoModel.Input(setupData: ReplaySubject<Bool>.create(bufferSize: 1))
+        
+        let output = viewModel.transform(input: input)
+        
+        for disposable in output.disposables {
+            disposable.disposed(by: disposeBag)
+        }
+        
+        output.dataReady
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+        .subscribe(onNext: {[unowned self]  bool in
+            self.setupVideoPlayer()
+        }).disposed(by: disposeBag)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         coordinatorDelegate?.viewControllerHasFinished()
         print("SingleVideoViewController deinit")
+        videoPlayer.pauseVideo()
         super.viewDidDisappear(animated)
     }
     //MARK: Setup Video Player
@@ -63,12 +83,11 @@ class SingleVideoViewController: UIViewController, YTPlayerViewDelegate {
     }
     //MARK: Setup Constraints
     func setupConstraints(){
-        
-        NSLayoutConstraint.activate([
-                   videoPlayer.topAnchor.constraint(equalTo: view.topAnchor),
-                   videoPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                   videoPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                   videoPlayer.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/3)
-               ])
+        videoPlayer.snp.makeConstraints { (make) in
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.top.equalTo(view.snp.top)
+            make.height.equalTo(UIScreen.main.bounds.height/3)
+        }
     }
 }

@@ -13,10 +13,12 @@ class SingleVideoModel {
     
     //MARK: Defining Structs
     struct Input    {
-        
+        var setupData: ReplaySubject<Bool>
     }
     struct Output   {
+        var videoID: String
         var disposables: [Disposable]
+        var dataReady: ReplaySubject<Bool>
     }
     struct Dependencies {
         var videoID: String
@@ -35,10 +37,21 @@ class SingleVideoModel {
     //MARK: Transform
     func transform(input: SingleVideoModel.Input) -> SingleVideoModel.Output {
         self.input = input
-        let disposables = [Disposable]()
+        var disposables = [Disposable]()
         
-        self.output = Output(disposables: disposables)
+        disposables.append(setupData(subject: input.setupData))
+        
+        self.output = Output(videoID: dependencies.videoID, disposables: disposables, dataReady: ReplaySubject<Bool>.create(bufferSize: 1))
         return output
+    }
+    
+    func setupData(subject: ReplaySubject<Bool>) -> Disposable {
+        return subject
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+        .subscribe(onNext: {[unowned self]  bool in
+            self.output.dataReady.onNext(true)
+        })
     }
     
 }

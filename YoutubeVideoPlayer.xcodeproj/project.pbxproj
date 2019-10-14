@@ -21,7 +21,7 @@
 		F01CAF47234B1FF9009C0898 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF46234B1FF9009C0898 /* IndexViewModel.swift */; };
 		F01CAF49234B209C009C0898 /* IndexViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF48234B209C009C0898 /* IndexViewCoordinator.swift */; };
 		F01CAF4C234B20EF009C0898 /* AppCoordiantor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF4B234B20EF009C0898 /* AppCoordiantor.swift */; };
-		F01CAF51234B3989009C0898 /* AlamofireRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF50234B3989009C0898 /* AlamofireRepository.swift */; };
+		F01CAF51234B3989009C0898 /* YoutubeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF50234B3989009C0898 /* YoutubeRepository.swift */; };
 		F01CAF53234B39A3009C0898 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF52234B39A3009C0898 /* AlamofireManager.swift */; };
 		F01CAF56234B3A69009C0898 /* IndexDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF55234B3A69009C0898 /* IndexDataModel.swift */; };
 		F01CAF59234B3E8F009C0898 /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAF58234B3E8F009C0898 /* DataClass.swift */; };
@@ -81,7 +81,7 @@
 		F01CAF46234B1FF9009C0898 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		F01CAF48234B209C009C0898 /* IndexViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewCoordinator.swift; sourceTree = "<group>"; };
 		F01CAF4B234B20EF009C0898 /* AppCoordiantor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordiantor.swift; sourceTree = "<group>"; };
-		F01CAF50234B3989009C0898 /* AlamofireRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRepository.swift; sourceTree = "<group>"; };
+		F01CAF50234B3989009C0898 /* YoutubeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeRepository.swift; sourceTree = "<group>"; };
 		F01CAF52234B39A3009C0898 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		F01CAF55234B3A69009C0898 /* IndexDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDataModel.swift; sourceTree = "<group>"; };
 		F01CAF58234B3E8F009C0898 /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		F01CAF4E234B3934009C0898 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				F01CAF50234B3989009C0898 /* AlamofireRepository.swift */,
+				F01CAF50234B3989009C0898 /* YoutubeRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -503,7 +503,7 @@
 				F01CAF53234B39A3009C0898 /* AlamofireManager.swift in Sources */,
 				F01CAFBF234B669F009C0898 /* OpenSingleDelegate.swift in Sources */,
 				F01CAF1F234B1F63009C0898 /* AppDelegate.swift in Sources */,
-				F01CAF51234B3989009C0898 /* AlamofireRepository.swift in Sources */,
+				F01CAF51234B3989009C0898 /* YoutubeRepository.swift in Sources */,
 				F01CAF47234B1FF9009C0898 /* IndexViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

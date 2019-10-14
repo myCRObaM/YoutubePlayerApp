@@ -10,6 +10,7 @@ def pods
   pod 'RealmSwift'
   pod 'RxSwift'
   pod 'RxCocoa'
+pod 'SnapKit'
   pod 'Kingfisher'
 end
 

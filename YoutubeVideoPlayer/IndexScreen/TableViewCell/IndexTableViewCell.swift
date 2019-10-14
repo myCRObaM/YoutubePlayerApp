@@ -50,22 +50,32 @@ class IndexTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(channelName)
         
+        setupConstraints()
         
-        NSLayoutConstraint.activate([
-            videoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            videoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            videoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            videoImageView.heightAnchor.constraint(equalToConstant: 200),
-            
-            titleLabel.topAnchor.constraint(equalTo: videoImageView.bottomAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: videoImageView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: videoImageView.trailingAnchor, constant: -20),
-            
-            channelName.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            channelName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            channelName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            channelName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
-        ])
+    }
+    
+    func setupConstraints(){
+        let cvsnp = contentView.snp
+        
+        videoImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(cvsnp.top)
+            make.height.equalTo(200)
+            make.leading.equalTo(cvsnp.leading)
+            make.trailing.equalTo(cvsnp.trailing)
+        }
+        
+        titleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(videoImageView.snp.bottom).offset(10)
+            make.leading.equalTo(videoImageView.snp.leading).offset(10)
+            make.trailing.equalTo(videoImageView.snp.trailing).offset(-20)
+        }
+        
+        channelName.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.bottom.equalTo(cvsnp.bottom).offset(-5)
+            make.leading.equalTo(cvsnp.leading).offset(10)
+            make.trailing.equalTo(cvsnp.trailing).offset(-10)
+        }
     }
     
     func setupCell(channel: String, title: String, imageURL: String){

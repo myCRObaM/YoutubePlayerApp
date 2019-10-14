@@ -19,6 +19,7 @@ PODS:
   - RxSwift (5.0.0)
   - RxTest (5.0.0):
     - RxSwift (~> 5)
+  - SnapKit (4.2.0)
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - RxTest
+  - SnapKit
   - youtube-ios-player-helper
 
 SPEC REPOS:
@@ -46,6 +48,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
+    - SnapKit
     - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
@@ -60,8 +63,9 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 302a3beec57efce2b491a7a110d7a8c8c8ce85b6
+PODFILE CHECKSUM: b393d8eabe865e5ab35e890312ba27707352b685
 
 COCOAPODS: 1.7.4

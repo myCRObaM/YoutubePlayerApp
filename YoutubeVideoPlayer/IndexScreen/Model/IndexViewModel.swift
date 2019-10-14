@@ -23,8 +23,9 @@ class IndexViewModel {
     }
     struct Dependencies {
         var scheduler: SchedulerType
-        var alamofireRepo: AlamofireRepository
+        var alamofireRepo: YoutubeRepository
     }
+    
     //MARK: Variables
     let dependencies: Dependencies
     var input: Input!
@@ -42,7 +43,6 @@ class IndexViewModel {
         var disposables = [Disposable]()
         
         disposables.append(getData(subject: input.getDataSubject))
-        disposables.append(openSingle(subject: input.openSingleSubject))
         
         self.output = IndexViewModel.Output(disposables: disposables, dataReadySubject: PublishSubject(), spinnerSubject: PublishSubject())
         return output
@@ -56,28 +56,23 @@ class IndexViewModel {
             })
         .observeOn(MainScheduler.instance)
         .subscribeOn(dependencies.scheduler)
-        .map({ bool -> DataClass in
-            var videoInfoLocal = [VideoInfo]()
-            for video in bool.items {
-                let snippet = video.snippet
-                videoInfoLocal.append(VideoInfo(id: video.id, publishedAt: snippet.publishedAt, title: snippet.title, description: snippet.description, thumbnail: snippet.thumbnails.medium.url, channelTitle: snippet.channelTitle))
-            }
-            let data = DataClass(results: bool.pageInfo.resultsPerPage, info: videoInfoLocal)
-            self.videoData = data
-            return data
+        .map({ [unowned self] bool -> DataClass in
+            return self.createLocalInfo(data: bool)
             })
         .subscribe(onNext: {[unowned self]  bool in
             self.output.dataReadySubject.onNext(true)
             self.output.spinnerSubject.onNext(false)
             })
     }
-    //MARK: Open single
-    func openSingle(subject: PublishSubject<Int>) -> Disposable {
-        return subject
-            .observeOn(MainScheduler.instance)
-            .subscribeOn(dependencies.scheduler)
-            .subscribe(onNext: {[unowned self]  bool in
-                self.openSingleDelegate?.openVC(videoID: (self.videoData?.videoInfo[bool].id)!)
-            })
+    
+    func createLocalInfo(data: IndexDataModel) -> DataClass {
+        var videoInfoLocal = [VideoInfo]()
+        for video in data.items {
+            let snippet = video.snippet
+            videoInfoLocal.append(VideoInfo(id: video.id, publishedAt: snippet.publishedAt, title: snippet.title, description: snippet.description, thumbnail: snippet.thumbnails.medium.url, channelTitle: snippet.channelTitle))
+        }
+        let data = DataClass(results: data.pageInfo.resultsPerPage, info: videoInfoLocal)
+        self.videoData = data
+        return data
     }
 }

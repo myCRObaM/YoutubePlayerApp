@@ -15,27 +15,23 @@ import Shared
 class IndexViewCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     let presenter: UINavigationController
-    var viewModel: IndexViewModel!
     let indexViewController: IndexViewController
     
     init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.viewModel = IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: AlamofireRepository()))
-        
-        self.indexViewController = IndexViewController(viewModel: viewModel)
-        
+        let viewModel = IndexViewModel(dependencies: IndexViewModel.Dependencies(scheduler: ConcurrentDispatchQueueScheduler(qos: .background), alamofireRepo: YoutubeRepository()))
+        let viewController = IndexViewController(viewModel: viewModel)
+        self.indexViewController = viewController
+        viewModel.openSingleDelegate = self
     }
     
     func start() {
-        presenter.viewControllers = [indexViewController]
-        viewModel.openSingleDelegate = self
+        presenter.pushViewController(indexViewController, animated: true)
     }
     
     deinit {
         print("Index View Coordinator deinit")
     }
-    
-    
 }
 
 extension IndexViewCoordinator: ParentCoordinatorDelegate {

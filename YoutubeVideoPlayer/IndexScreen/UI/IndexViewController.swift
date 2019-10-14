@@ -9,27 +9,9 @@
 import UIKit
 import RxSwift
 
-class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.videoData?.resultsPerPage ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as? IndexTableViewCell else {fatalError("cell not found")}
-        guard let data = viewModel.videoData?.videoInfo[indexPath.row] else {fatalError("Data not found")}
-        
-        cell.setupCell(channel: data.channelTitle, title: data.title, imageURL: data.thumbnail)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.input.openSingleSubject.onNext(indexPath.row)
-    }
-    
-    
-    
-    let customView: UITableView = {
+class IndexViewController: UIViewController {
+    //MARK: UIElements
+    let tableView: UITableView = {
         let view = UITableView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,21 +40,26 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         setupViewModel()
         setupUI()
+        viewModel.input.getDataSubject.onNext(true)
     }
     //MARK: UI setup
     func setupUI(){
-        view.addSubview(customView)
-        customView.delegate = self
-        customView.dataSource = self
-        customView.register(IndexTableViewCell.self, forCellReuseIdentifier: reuseID)
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(IndexTableViewCell.self, forCellReuseIdentifier: reuseID)
         
-        NSLayoutConstraint.activate([
-            customView.topAnchor.constraint(equalTo: view.topAnchor),
-            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        setupConstraints()
     }
+    func setupConstraints() {
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top)
+            make.bottom.equalTo(view.snp.bottom)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+        }
+    }
+    
     //MARK: Setup View Model
     func setupViewModel(){
         let input = IndexViewModel.Input(getDataSubject: ReplaySubject.create(bufferSize: 1), openSingleSubject: PublishSubject())
@@ -84,9 +71,8 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         spinnerControl(subject: output.spinnerSubject).disposed(by: disposeBag)
-        input.getDataSubject.onNext(true)
-        
     }
+    //MARK: Spinner functions
     func spinnerControl(subject: PublishSubject<Bool>) -> Disposable{
         return subject
         .observeOn(MainScheduler.instance)
@@ -97,11 +83,11 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.showSpinner(onView: self.view)
             case false:
                 self.removeSpinner()
-                self.customView.reloadData()
+                self.tableView.reloadData()
             }
             })
     }
-    
+
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -125,5 +111,26 @@ class IndexViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
 
+}
+
+extension IndexViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: TableView Delegates
+       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+           return viewModel.videoData?.resultsPerPage ?? 0
+       }
+       
+       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+           guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as? IndexTableViewCell else {fatalError("cell not found")}
+           guard let data = viewModel.videoData?.videoInfo[indexPath.row] else {fatalError("Data not found")}
+           
+           cell.setupCell(channel: data.channelTitle, title: data.title, imageURL: data.thumbnail)
+           return cell
+       }
+       
+       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            viewModel.openSingleDelegate?.openVC(videoID: (viewModel.videoData?.videoInfo[indexPath.row].id ?? ""))
+       }
+       
 }
 
