@@ -55,26 +55,22 @@ class IndexTableViewCell: UITableViewCell {
     }
     
     func setupConstraints(){
-        let cvsnp = contentView.snp
         
         videoImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(cvsnp.top)
+            make.top.leading.trailing.equalTo(contentView)
             make.height.equalTo(200)
-            make.leading.equalTo(cvsnp.leading)
-            make.trailing.equalTo(cvsnp.trailing)
         }
         
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(videoImageView.snp.bottom).offset(10)
-            make.leading.equalTo(videoImageView.snp.leading).offset(10)
+            make.top.leading.equalTo(videoImageView).offset(10)
             make.trailing.equalTo(videoImageView.snp.trailing).offset(-20)
         }
         
         channelName.snp.makeConstraints { (make) in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.bottom.equalTo(cvsnp.bottom).offset(-5)
-            make.leading.equalTo(cvsnp.leading).offset(10)
-            make.trailing.equalTo(cvsnp.trailing).offset(-10)
+            make.bottom.equalTo(contentView).offset(-5)
+            make.leading.equalTo(contentView).offset(10)
+            make.trailing.equalTo(contentView).offset(-10)
         }
     }
     

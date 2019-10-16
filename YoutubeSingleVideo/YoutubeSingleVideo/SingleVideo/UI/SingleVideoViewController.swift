@@ -84,9 +84,7 @@ class SingleVideoViewController: UIViewController, YTPlayerViewDelegate {
     //MARK: Setup Constraints
     func setupConstraints(){
         videoPlayer.snp.makeConstraints { (make) in
-            make.leading.equalTo(view.snp.leading)
-            make.trailing.equalTo(view.snp.trailing)
-            make.top.equalTo(view.snp.top)
+            make.leading.trailing.top.equalTo(view)
             make.height.equalTo(UIScreen.main.bounds.height/3)
         }
     }
