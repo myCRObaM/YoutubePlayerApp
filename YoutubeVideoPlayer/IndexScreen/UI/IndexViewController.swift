@@ -53,10 +53,7 @@ class IndexViewController: UIViewController {
     }
     func setupConstraints() {
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top)
-            make.bottom.equalTo(view.snp.bottom)
-            make.leading.equalTo(view.snp.leading)
-            make.trailing.equalTo(view.snp.trailing)
+            make.top.bottom.leading.trailing.equalTo(view)
         }
     }
     
